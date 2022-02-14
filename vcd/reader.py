@@ -405,7 +405,10 @@ class _TokenizerState:
             or 97 <= c <= 122  # 'a' - 'z'
             or c == 95  # '_'
             or c == 36  # '$'
-            or c == 46  # '.' not in spec, but seen in the wild
+            # below characters are not in spec, but seen in the wild
+            or c == 46  # '.'
+            or c == 91  # '['
+            or c == 93  # ']'
         ):
             identifier.append(c)
             c = self.advance(raise_on_eof=False)

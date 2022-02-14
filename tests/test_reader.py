@@ -75,6 +75,17 @@ def test_parse_var_decl():
     assert token.var.ref_str == 'foo[17]'
 
 
+def test_parse_var_decl_square_bracket():
+    """
+    Tests parsing for a variable with both square brackets in its name and bit indices.
+    """
+    tokens = tokenize(io.BytesIO(b'$var wire 32 Q! regs[0] [31:0] $end'))
+    token = next(tokens)
+    assert token.var.type_ == VarType.wire
+    assert token.var.ref_str == 'regs[0][31:0]'
+    assert token.var.size == 32
+
+
 def test_parse_var_decl_with_dotted_ref():
     tokens = tokenize(io.BytesIO(b'$var real  1  aaaaa  SomeThing.MORE_STUFF_0  $end'))
     token = next(tokens)
