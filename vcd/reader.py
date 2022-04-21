@@ -409,6 +409,8 @@ class _TokenizerState:
             or c == 46  # '.'
             or c == 91  # '['
             or c == 93  # ']'
+            or c == 60  # '<'
+            or c == 62  # '<'
         ):
             identifier.append(c)
             c = self.advance(raise_on_eof=False)
