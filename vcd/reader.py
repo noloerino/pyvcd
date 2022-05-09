@@ -393,6 +393,7 @@ class _TokenizerState:
             65 <= c <= 90  # 'A' <= c <= 'Z'
             or 97 <= c <= 122  # 'a' - 'z'
             or c == 95  # '_'
+            or c == 92  # '\' apparently backslashes are fine?
         ):
             identifier.append(c)
             c = self.advance()
@@ -411,6 +412,7 @@ class _TokenizerState:
             or c == 93  # ']'
             or c == 60  # '<'
             or c == 62  # '<'
+            or c == 58  # ':'
         ):
             identifier.append(c)
             c = self.advance(raise_on_eof=False)
